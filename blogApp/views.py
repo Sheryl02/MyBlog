@@ -68,15 +68,10 @@ class create_post(CreateView):
     model = Post
     form_class = addPostForm
     template_name = 'blogApp/add_post.html'
-    # fields = ['title','author','body','category']
     # fields = ['title','body']
     def form_valid(self, form_class):
         form_class.instance.author = self.request.user
         return super().form_valid(form_class)
-
-# class add_category(CreateView):
-#     model = Post
-#     template_name = 'Blog/add_category.html'
 
 class post_update(UpdateView):
     model = Post
