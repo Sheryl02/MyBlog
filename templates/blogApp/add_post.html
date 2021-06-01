@@ -1,0 +1,27 @@
+{% extends 'blogApp/base.html' %}
+
+{% block title %} Create New Post {% endblock %}
+
+{% block content %}
+<br>
+<h1>Create New Post</h1>
+
+<div class='form-group'>
+<form method="POST">
+  <table>
+    {% csrf_token %}
+    <!-- {{form.title}}<br>
+    {{form.author}}<br>
+    {{form.body}}<br> -->
+    <!-- {{form.title}}<br>
+    <input type="text" name="" value="{{user.username}}"><br>
+    {{form.body}}<br>
+    {{from.category}} -->
+    {{form.as_p}}
+
+  </table><br>
+  <input type="submit" value="Create">
+</form>
+</div>
+
+{% endblock %}

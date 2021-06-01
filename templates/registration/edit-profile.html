@@ -1,0 +1,54 @@
+{% extends 'blogApp/base.html'%}
+
+{% block title %} Profile-Settings{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+  <h2>Settings</h2>
+  <br><br>
+  <!-- {{user.profile.bio}} -->
+  <div class='form-group'>
+  <form method="POST">
+    {% csrf_token %}
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>Username</td>
+          <td>{{form.username}}</td>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td>{{form.first_name}}</td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td>{{form.last_name}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{form.email}}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><a href="{%url 'password'%}">Change Passwords</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <table>
+      {{form.as_p}}
+    </table> -->
+
+    <input type="submit" value="Update">
+  </form>
+  </div>
+</div>
+
+
+<!--test-->
+
+
+<!--test-->
+
+{% endblock %}

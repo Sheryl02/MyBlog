@@ -1,0 +1,27 @@
+{% extends 'blogApp/base.html' %}
+
+{% block title %} Delete Blog Post {% endblock %}
+
+{% block content %}
+<br>
+{%if user.is_authenticated%}
+  {%if user.id == post.author.id%}
+    <h3>Delete {{post.title}}</h3>
+
+    <div class='form-group'>
+    <form method="POST">
+        {% csrf_token %}
+        <h4>Are you sure?</h4>
+      <input type="submit" value="Delete Post">
+      <a href="{%url 'home'%}">
+        <input type="button" name="" value="Cancel">
+      </a>
+    </form>
+    </div>
+  {%else%}
+    <p>you are not authorised to edit other member's posts</p>
+  {%endif%}
+{%else%}
+  <p>You are not authorised to edit the post unless you are an authorised member</p>
+{%endif%}
+{% endblock %}

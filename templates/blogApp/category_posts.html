@@ -1,0 +1,23 @@
+{% extends 'blogApp/base.html'%}
+
+{% block content %}
+  <br>
+  {% if posts %}
+    <h1>Posts on {{category}}</h1>
+
+    <ul>
+    {% for post in posts %}
+        <h4><a href="{%url 'post_detail' post.pk %}" class="text-success">{{ post.title }}</a></h4>
+        <small class="text-muted">
+          Author: {{ post.author.first_name }}{{ post.author.last_name }} |
+          {{post.created_on}} | {{post.category}}
+        </small>
+        <p>{{ post.body | slice:":500"}}</p>
+      <br>
+      {% endfor %}
+    </ul>
+    <br>
+    {%else%}
+      <p>No posts on this category</p>
+    {%endif%}
+{% endblock %}

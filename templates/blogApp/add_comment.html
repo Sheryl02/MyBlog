@@ -1,0 +1,19 @@
+{% extends 'blogApp/base.html' %}
+
+{% block title %} Post Comment {% endblock %}
+
+{% block content %}
+<br>
+<h1>Leave your comments here</h1>
+
+<div class='form-group'>
+<form method="POST">
+  <table>
+    {% csrf_token %}
+    {{form.as_p}}
+  </table><br>
+  <input type="submit" value="Add Comment">
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'blogApp/base.html'%}
+{%load static%}
+{% block content %}
+  <br>
+  <h1>{{ current_user }}'s Profile</h1>
+
+  <!--user profile-->
+  <div class ="container-md"
+  <div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+          {%if current_user.profile_pic %}
+            <img src="{{current_user.profile_pic.url}}" class="img-thumbnail" alt="Profile Image" width="150" height="150">
+          {%else%}
+            <img src="{%static 'images/profile-img-default.png'%}" alt="Profile Image" width="100" height="100">
+          {%endif%}
+        </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <!--
+          Here the username, last_name and bio are from the User and are not from the Profile model.
+         -->
+          <h5 class="card-title">{{ current_user.user.first_name }} {{ current_user.user.last_name }} </h5>
+          <p class="card-text">{{current_user.bio}}</p>
+          <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- {%if user.is_authenticated%}
+    {%if user.id == current_user.user.id%}
+      <a href="{%url 'create_post'%}"><button class="btn btn-secondary">Create Post</button></a><br>
+      <a href="{%url 'edit-profile' current_user.id%}">Edit Profile</a><br>
+      <a href="{%url 'edit-settings'%}">Settings</a>
+    {%endif%}
+  {%endif%} -->
+  <div class="container d-flex p-4">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-3">
+        {%if user.is_authenticated%}
+          {%if user.id == current_user.user.id%}
+            <div class="card" style="width: 15rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <a href="{%url 'create_post'%}">Create New Post</a><br>
+              </li>
+              <li class="list-group-item">
+                <a href="{%url 'edit-profile' current_user.id%}">Edit Profile</a><br>
+              </li>
+              <!-- <li class="list-group-item">A third item</li> -->
+            </ul>
+            </div>
+          {%endif%}
+        {%endif%}
+      </div>
+
+      <div class="col">
+        <div class="container">
+          <div class="row">
+            <div class="col-6 col-sm-3">Username: </div>
+            <div class="col-6 col-sm-3">{{current_user.user.username}}</div>
+
+            <div class="w-100"></div>
+            <br>
+            <div class="col-6 col-sm-3">First Name:</div>
+            <div class="col-6 col-sm-3">{{current_user.user.first_name}}</div>
+
+            <div class="w-100"></div>
+            <br>
+            <div class="col-6 col-sm-3">Last Name: </div>
+            <div class="col-6 col-sm-3">{{current_user.user.last_name}}</div>
+
+            <div class="w-100"></div>
+            <br>
+            <div class="col-6 col-sm-3">Email:</div>
+            <div class="col-6 col-sm-3">{{current_user.user.email}}</div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

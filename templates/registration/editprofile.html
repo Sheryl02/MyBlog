@@ -1,0 +1,43 @@
+{% extends 'blogApp/base.html'%}
+
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+
+<br>
+{%if user.is_authenticated%}
+  <!-- {%if user.id == profile.user.id%} <!-- profle.user.id - from the default User table -->
+    <h1>Edit Profile</h1>
+    <br><br>
+    <!-- {{user.profile.bio}} -->
+    <div class='form-group'>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>Bio:</td>
+            <td>{{form.bio}}</td>
+          </tr>
+          <tr>
+            <td>Profile Image:</td>
+            <td>{{form.profile_pic}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <table class="table table-borderless">
+
+        {{form.as_p}}
+      </table> -->
+      <input type="submit" value="Update Profile">
+    </form>
+    </div>
+  {%else%}
+    You are not allowed to edit Profile. Please <a href="#">login</a> to edit your profile
+  {%endif%}
+<!-- {%else%}
+
+  You are not the correct user to edit this profile
+{%endif%} -->
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'blogApp/base.html' %}
+
+{% block title %} Create Profile {% endblock %}
+
+{% block content %}
+<br>
+{%if user.is_authenticated%}
+  <h1>Create New Account</h1>
+
+  <div class='form-group'>
+  <form method="POST" enctype="multipart/form-data">
+    <table>
+      {% csrf_token %}
+      <table>
+        {{form.as_table}}
+      </table>
+    </table><br>
+    <input type="submit" value="Create Profile">
+  </form>
+  </div>
+{%endif%}
+{% endblock %}

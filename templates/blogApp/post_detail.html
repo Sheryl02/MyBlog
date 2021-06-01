@@ -1,0 +1,66 @@
+{% extends 'blogApp/base.html'%}
+
+{% block title %} {{post.title}} {% endblock %}
+  {% block content %}
+    <br>
+    <!--Post-->
+    <h1>{{ post.title }}</h1><br>
+    <p class="card-text"></p>
+    <hr>
+    <small class="text-muted">
+      {%if user.is_authenticated%}
+        By: <a href="{%url 'profile' post.author.profile.id%}">{{ post.author.first_name }} {{post.author.last_name}}</a> |
+      {%else%}
+        By: {{ post.author.first_name }} {{post.author.last_name}} |
+      {%endif%}
+
+      {{post.created_on.date}} | {{post.last_updated.date}}
+    </small><br><br>
+    <p>{{ post.body }}</p>
+    {%if user.is_authenticated%}
+      {%if user.id == post.author.profile.user.id%}
+        <a href="{%url 'post_update' post.pk%}"><small>Edit Post</small></a>
+        <a href="{%url 'delete_post' post.pk%}"><small>Delete Post</small></a>
+      {%endif%}
+    {%endif%}
+
+    <!--Like button -->
+      <form action="{%url 'like_post' post.pk%}" method="POST">
+        {%csrf_token%}
+        <br>
+        {%if user.is_authenticated%}
+          {%  if liked %}
+            <button type="submit" name = "like_post" value = "{{post.id}}" class="btn btn-primary btn-sm">Unlike</button>
+          {%else%}
+            <button type="submit" name = "like_post" value = "{{post.id}}" class="btn btn-primary btn-sm">Like</button>
+          {%endif%}
+        {%endif%}
+        - {{total_likes}} Likes
+        <!-- <p class="card-text"><a href="{%url 'profile' post.author.profile.id%}"><small>Author's Profile</small></a></p> -->
+      </form>
+      <br>
+
+      <hr>
+      <h3>Comments</h3>
+      {%if not post.comments.all%}
+        No commments on this post yet.<br>
+      {%else%}
+        {%for comment in post.comments.all%}
+          <small><strong>{{comment.name}}</strong> - {{comment.date_added.date}}</small>
+          <br>
+          {{comment.your_comments}}
+          <br><br>
+        {%endfor%}
+      {%endif%}
+      <br>
+      {%if user.is_authenticated%}
+      <a href="{%url 'add_comment' post.pk%}">
+        <button type="button" class="btn btn-success">Leave a comment</button>
+        <!-- <button type="button">Leave a comment</button> -->
+      </a>
+        <!-- <a href="{%url 'add_comment' post.pk%}" class="badge bg-success text-wrap fst-normal" style="width: 5rem;">Leave a comment</a> -->
+      {%endif%}
+      <br><br>
+
+
+  {% endblock %}

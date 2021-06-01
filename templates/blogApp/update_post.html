@@ -1,0 +1,26 @@
+{%extends 'blogApp/base.html'%}
+
+{%block title%}Post Update {%endblock%}
+
+{%block content%}
+<br>
+{%if user.is_authenticated%}
+  {%if user.id == post.author.id%}
+    <h1>Update Post</h1>
+    <div class='form-group'>
+    <form method="POST">
+      <table>
+        {% csrf_token %}
+        {{form.as_p}}
+      </table>
+      <br>
+      <input type="submit" value="Update">
+    </form>
+    </div>
+  {%else%}
+    <p>you are not authorised to edit other member's posts</p>
+  {%endif%}
+{%else%}
+  <p>You are not authorised to edit the post unless you are an authorised member</p>
+{%endif%}
+{%endblock%}
