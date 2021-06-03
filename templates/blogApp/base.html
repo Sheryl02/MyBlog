@@ -33,19 +33,6 @@
               <a class="nav-link" aria-current="page" href="{%url 'home'%}">Home</a>
             </li>
 
-            <!-- {% if user.is_authenticated%}
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'logout'%}">Logout</a>
-              </li>
-            {%else%}
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'register'%}">Register</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'login'%}">Login</a>
-              </li>
-            {%endif%} -->
-
             {% if user.is_authenticated%}
             <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Gallery</a>
@@ -58,9 +45,6 @@
                 {{user.username}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <!-- {%for item in category_menu%}
-                  <a class="dropdown-item" href="{%url 'category' item%}">{{item}}</a>
-                {%endfor%} -->
                 {%if user.profile.id%}
                   <li><a class="dropdown-item" href="{%url 'profile' user.profile.id%}">View Profile</a></li>
                   <li><a class="dropdown-item" href="{%url 'edit-settings'%}">Settings</a></li>
@@ -68,7 +52,6 @@
                   <li><a class="dropdown-item" href="{%url 'create-account'%}">Create Account</a></li>
                 {%endif%}
                 <li><hr class="dropdown-divider"></li>
-                <!-- <li><a class="nav-link text=dark" href="{%url 'logout'%}">Logout</a></li> -->
                 <li><a class="dropdown-item" href="{%url 'logout'%}">Logout</a></li>
               </ul>
             </li>
