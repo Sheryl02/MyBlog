@@ -10,15 +10,7 @@
 <form method="POST">
   <table>
     {% csrf_token %}
-    <!-- {{form.title}}<br>
-    {{form.author}}<br>
-    {{form.body}}<br> -->
-    <!-- {{form.title}}<br>
-    <input type="text" name="" value="{{user.username}}"><br>
-    {{form.body}}<br>
-    {{from.category}} -->
     {{form.as_p}}
-
   </table><br>
   <input type="submit" value="Create">
 </form>
