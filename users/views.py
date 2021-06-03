@@ -37,16 +37,6 @@ class viewProfile(DetailView):
         context['current_user'] = current_user
         return context
 
-# class editProfile(generic.UpdateView):
-#     model = Profile
-#     # form_class = editForm
-#     template_name = "registration/editprofile.html"
-#     fields = ['bio','profile_pic']
-#     success_url = reverse_lazy('home')
-#     #
-#     # def get_object(self):
-#     #     return self.request.user
-
 class editProfile(generic.UpdateView):
     model = Profile
     # form_class = editForm
