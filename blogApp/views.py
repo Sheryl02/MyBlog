@@ -47,7 +47,7 @@ class addComment(CreateView):
         return super().form_valid(form)
     # success_url = reverse_lazy('home')
     def get_success_url(self):
-        return reverse_lazy('post_detail', kwargs={'pk':self.kwargs['pk']})
+        return reverse('post_detail', kwargs={'pk':self.kwargs['pk']})
 
 def likePost(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('like_post'))
@@ -83,6 +83,6 @@ class post_update(UpdateView):
 class delete_post(DeleteView):
     model = Post
     template_name = 'blogApp/delete_post.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse('home')
 
 # Create your views here.
